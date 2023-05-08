@@ -5,8 +5,24 @@
     ViewData["Title"] = "Forside";
 }
 
+@if (Model == null)
+{
+    <div>
+        <h3>Der er problemer med forbindelsen, vend venligst tilbage senere, og refresh siden.</h3>
+        <details>(503 Service Unavailable)
+            <p>
+                Tjek om api'en kører btw.
+            </p>
+            <summary>Details (for developers only!!!!)</summary>
+
+        </details>
+    </div>
+    return;
+}
+
 <h1>Velkommen til Vestbjerg Bio!</h1>
 <p style="font-size:22px">Vælg en af vores film for at se dens forestillinger</p>
+@if(Model!=null)
 @foreach (MovieInfo movie in Model)
 {
     <div>
@@ -36,6 +52,8 @@
         <hr class="hr" style="border:2px solid grey" />
     </div>
 }
+
+
 
 
 
