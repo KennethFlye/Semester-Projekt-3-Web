@@ -1,8 +1,7 @@
-﻿@    using System.Text.RegularExpressions;
-@    using Newtonsoft.Json;
-@    using IdentityTest2.Models;
-    using SemesterProjekt3Web.Models;
-@model             Booking
+﻿@using System.Text.RegularExpressions;
+@using Newtonsoft.Json;
+@using SemesterProjekt3Web.Models;
+@model SemesterProjekt3Web.Models.Booking
 @{
     ViewData["Title"] = "Customer Information";
     string booking = JsonConvert.SerializeObject(Model);
