@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SemesterProjekt3Web.Data;
 using System;
 
-namespace IdentityTest2.Data.Migrations
+namespace SemesterProjekt3Web.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("00000000000000_CreateIdentitySchema")]

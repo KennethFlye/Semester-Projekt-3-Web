@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using IdentityTest2.Models;
+using SemesterProjekt3Web.Models;
 using System.Diagnostics;
 
 namespace SemesterProjekt3Web.Controllers

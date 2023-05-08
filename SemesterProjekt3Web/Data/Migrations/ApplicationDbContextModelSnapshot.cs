@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SemesterProjekt3Web.Data;
 using System;
 
-namespace IdentityTest2.Data.Migrations
+namespace SemesterProjekt3Web.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
