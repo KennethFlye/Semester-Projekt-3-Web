@@ -74,4 +74,6 @@ app.MapControllerRoute(
 app.MapRazorPages();
 app.MapControllerRoute(
     name: "showings", pattern: "Movies/{id}/Showings", defaults: new { controller = "Home", action = "Showings" });
+app.MapControllerRoute(
+    name: "seats", pattern: "Bookings/Showings/{id}/Seats", defaults: new { controller = "Booking", action = "Seats" });
 app.Run();
