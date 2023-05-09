@@ -29,22 +29,39 @@ namespace SemesterProjekt3Web.Controllers
 
             Console.WriteLine("showingdata:" + showingData);
             var myList = new List<string>();
-            foreach (var item in formData.ToString().Split(','))
+            if (!formData.ToString().Contains(","))
             {
-                string addItem = item;
-                if (item.StartsWith("["))
+                
+                string seat = formData.ToString();
+                Console.WriteLine(seat);
+                seat = seat.TrimStart('[');
+                Console.WriteLine(seat);
+                seat = seat.TrimEnd(']');
+                Console.WriteLine(seat);
+                myList.Add(seat);
+            }
+            else
+            {
+                foreach (var item in formData.ToString().Split(','))
                 {
-                    addItem = item.TrimStart('[');
-                }
-                if (item.EndsWith("]"))
-                {
-                    addItem = item.TrimEnd(']');
+                    string addItem = item;
+                    if (item.StartsWith("["))
+                    {
+                        addItem = item.TrimStart('[');
+                    }
+                    if (item.EndsWith("]"))
+                    {
+                        addItem = item.TrimEnd(']');
+                    }
+
+                    myList.Add(addItem);
+                    Console.WriteLine(addItem);
                 }
 
-                myList.Add(addItem);
-                Console.WriteLine(addItem);
             }
-            Console.WriteLine(myList);
+            
+            
+            Console.WriteLine("Trimmed seat: " + myList);
 
             //Nu opretter vi vores booking objekt
             Console.WriteLine(realShowing.ShowingId);
@@ -58,6 +75,7 @@ namespace SemesterProjekt3Web.Controllers
             foreach (var seat in myList)
             {
                 Seat tempSeat = await seatAccess.GetSeatById(seat);
+                Console.WriteLine("Seat: " + tempSeat);
                 seats.Add(tempSeat);
             }
             newBooking.BookedSeats = seats;
