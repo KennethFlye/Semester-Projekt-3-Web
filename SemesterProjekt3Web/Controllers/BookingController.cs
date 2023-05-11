@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System.Diagnostics;
 using SemesterProjekt3Web.ApiAccess;
 using SemesterProjekt3Web.Models;
+using SemesterProjekt3Web.BusinessLogic;
 
 namespace SemesterProjekt3Web.Controllers
 {
@@ -82,7 +83,7 @@ namespace SemesterProjekt3Web.Controllers
             return View(newBooking);
         }
 
-        public IActionResult Seats(int id)
+        public IActionResult Seats(int id, bool returned = false)
         {
             HttpClient client = new HttpClient();
 
@@ -92,7 +93,7 @@ namespace SemesterProjekt3Web.Controllers
             string stringResult = sr.ReadToEnd();
             sr.Close();
             Showing foundShowing = JsonConvert.DeserializeObject<Showing>(stringResult);
-
+            ViewBag.Returned = returned;
             return View(foundShowing);
         }
 
@@ -105,9 +106,14 @@ namespace SemesterProjekt3Web.Controllers
             ViewBag.CustomerName = name;
             ViewBag.CustomerEmail = email;
 
-            BookingAccess ba = new BookingAccess();
-            await ba.AddBooking(realBooking);
-
+            BookingAccessLogic bal = new BookingAccessLogic();
+            bool suceeded = await bal.AddBooking(realBooking);
+            if (!suceeded)
+            {
+                
+                return RedirectToAction("Seats", "Booking", new {id = realBooking.Showing.ShowingId, returned = true});
+            }
+            
             return View(realBooking);
         }
 
