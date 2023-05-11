@@ -9,7 +9,7 @@ namespace SemesterProjekt3Web.BusinessLogic
 
         public BookingAccessLogic()
         {
-            var api = new BookingAccess();
+            api = new BookingAccess();
         }
 
 
