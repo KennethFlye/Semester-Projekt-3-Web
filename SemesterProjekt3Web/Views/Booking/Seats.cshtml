@@ -11,7 +11,11 @@
     StreamReader sr = new(respTask.Result.Content.ReadAsStream());
     string stringResult = sr.ReadToEnd();
     sr.Close();
-    List<Seat> bookedSeats = JsonConvert.DeserializeObject<List<Seat>>(stringResult);
+    List<Seat> bookedSeats = new List<Seat>();
+    if (!stringResult.Equals(Model.ShowingId.ToString()))
+    {
+        bookedSeats = JsonConvert.DeserializeObject<List<Seat>>(stringResult);
+    }
     string showing = JsonConvert.SerializeObject(Model);
 
     
